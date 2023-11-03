@@ -44,19 +44,16 @@ export const createBreed = (breed) => {
       body: JSON.stringify(breed),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((response) => {
         // Verificar la respuesta y tomar medidas en consecuencia
-        if (data.status !== 200) {
-          // Manejar el caso de error
-          console.error("Error al crear una nueva raza:", data);
-        } else {
-          // Manejar el caso de éxito (la nueva raza se ha creado con éxito)
-          // Puedes realizar otras acciones aquí, como actualizar la lista de razas en tu estado Redux si es necesario.
-          // dispatch(otraAcciónQueActualizaElEstado);
+        if (response.error) {
+          alert(`Error al crear la raza: ${response.error}`);
+        } 
+        else {
+          alert("Raza creada")
         }
       })
       .catch((error) => {
-        // Manejar errores de red u otros errores
         console.error("Error de red al crear una nueva raza:", error);
       });
   };
@@ -86,19 +83,3 @@ export const setCurrentPage = (page) => ({
   payload: page,
 });
 
-// const formatBreed = (arr) => {
-//   if (!Array.isArray(arr)) {
-//     return [];
-//   }
-//   return arr.map((element) => {
-//     return {
-//       id: element.id,
-//       name: element.name,
-//       weight: element.weight,
-//       height: element.height,
-//       life_span: element.life_span,
-//       temperament: element.temperament,
-//       image: element.image,
-//     };
-//   });
-// };

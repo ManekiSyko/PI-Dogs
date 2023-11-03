@@ -48,6 +48,10 @@ const Boton = styled.button`
     color: #dfdfdf;
   };
 `
+const Separador = styled.div`
+  width: 30em;
+`
+
 const Home = ({ allCards, currentPage, cardsPerPage, getAllBreeds, setCurrentPage }) => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -57,6 +61,10 @@ const Home = ({ allCards, currentPage, cardsPerPage, getAllBreeds, setCurrentPag
       setDataLoaded(true);
     }
   }, [getAllBreeds, dataLoaded]);
+
+  // Calcula el número total de páginas
+  const totalPages = Math.ceil(allCards.length / cardsPerPage);
+
   // Calcula el índice de inicio y fin de las tarjetas en la página actual
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -66,19 +74,39 @@ const Home = ({ allCards, currentPage, cardsPerPage, getAllBreeds, setCurrentPag
     setCurrentPage(newPage);
   };
 
+  const goToFirstPage = () => {
+    handlePageChange(1);
+  };
+
+  const goToLastPage = () => {
+    handlePageChange(totalPages);
+  };
+
   return (
     <Pagina>
       <Cartita>
         <Cards cards={currentCards} />
       </Cartita>
       <Botonera>
-          <Boton
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}>Anterior</Boton>
-          <Boton
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentCards.length < cardsPerPage}>Siguiente</Boton>
-        </Botonera>
+        <Boton
+          onClick={goToFirstPage}
+          disabled={currentPage === 1}>Inicio
+        </Boton>
+        <Separador/>
+        <Boton
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}>Anterior
+        </Boton>
+        <Boton
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentCards.length < cardsPerPage}>Siguiente
+        </Boton>
+        <Separador/>
+        <Boton
+          onClick={goToLastPage}
+          disabled={currentCards.length < cardsPerPage}>Fin
+        </Boton>
+      </Botonera>
     </Pagina>
   );
 };

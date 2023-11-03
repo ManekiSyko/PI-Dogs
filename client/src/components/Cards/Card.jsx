@@ -86,6 +86,8 @@ const ImgYNom = styled.div`
 
 function Card({name, id, image, temperament, weight}) {
 
+   const defaultImg = '/images/default.jpg'
+
    const maxCaracteres = 30;
    const textoTruncado = name.length > maxCaracteres ? name.slice(0, maxCaracteres) + '...' : name;
 
@@ -95,7 +97,7 @@ function Card({name, id, image, temperament, weight}) {
       <Carta>
          <ImgYNom>
             <ImgContainer>
-              <img src={image}/>
+              <img src={image || defaultImg} alt=""/>
             </ImgContainer>
             <h2>{textoTruncado}</h2>
             <div className="overlay">

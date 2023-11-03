@@ -94,13 +94,15 @@ const EntradaSelector = styled.div`
   font-size: 22px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 50px;
+  max-height: 150px;
   width: 20em;
-  border-top-right-radius: 2em;
+  border-top-right-radius: 0.5em;
   border-top-left-radius: 2em;
   border-width: 0em;
   padding-right: 2em;
   padding-left: 2em;
   box-shadow: -2px 2px 10px rgba(32, 32, 32, 0.5);
+  overflow: auto;
 `;
 const Selector = styled.select`
   font-size: 22px;
@@ -213,7 +215,6 @@ const handleChange = (e) => {
     e.preventDefault();
     console.log(formData);
     createBreed(formData);
-    alert("Raza creada")
   };
 
   return (
@@ -223,7 +224,7 @@ const handleChange = (e) => {
         <Divs>
           <DivA>
             <DivIndividual>
-              <Descripcion>Nombre:</Descripcion>
+              <Descripcion>Nombre</Descripcion>
               <Entrada
                 type="text"
                 name="name"
@@ -234,7 +235,7 @@ const handleChange = (e) => {
               />
             </DivIndividual>
             <DivIndividual>
-              <Descripcion>Imagen:</Descripcion>
+              <Descripcion>Imagen</Descripcion>
               <Entrada
                 type="text"
                 name="image"
@@ -245,7 +246,7 @@ const handleChange = (e) => {
             </DivIndividual>
             <DivC>
               <DivIndividual>
-                <Descripcion>Peso:</Descripcion>
+                <Descripcion>Peso</Descripcion>
                 <EntradaChica
                   type="text"
                   name="weight"
@@ -256,7 +257,7 @@ const handleChange = (e) => {
                 />
               </DivIndividual>
               <DivIndividual>
-                <Descripcion>Altura:</Descripcion>
+                <Descripcion>Altura</Descripcion>
                 <EntradaChica
                   type="text"
                   name="height"
@@ -268,7 +269,7 @@ const handleChange = (e) => {
               </DivIndividual>
             </DivC>
             <DivIndividual>
-              <Descripcion>Años de vida:</Descripcion>
+              <Descripcion>Años de vida</Descripcion>
               <EntradaChica
                 type="text"
                 name="life_span"

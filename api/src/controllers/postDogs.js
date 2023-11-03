@@ -4,9 +4,10 @@ const postDogs = async (req, res) => {
   const {name, image, height, weight, life_span, temperament}= req.body;
   try {
     console.log('Data received', [name, image, height, weight, life_span, temperament]);
-    // let ExistingDog = await Dog.findOne({ where: { name: name }})
-
-    // if (!ExistingDog) {
+    let ExistingDog = await Dog.findOne({ where: { name: name }})
+    if (ExistingDog) {
+      return res.status(400).json({error: 'Esa raza ya existe'});
+    }
       const newDog = await Dog.create({
         name: name,
         reference_image_id: image,
@@ -14,10 +15,6 @@ const postDogs = async (req, res) => {
         weight: weight,
         life_span: life_span,
       });
-    // }
-    // else {
-    //   return res.status(200).json({ message: "Esa raza ya existe" });
-    // }
     if (temperament) {
       for (let index = 0; index < temperament.length; index++) {
         const tempName = temperament[index];

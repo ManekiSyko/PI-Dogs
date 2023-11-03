@@ -74,6 +74,7 @@ export const Detail = () => {
   const { id } = useParams()
   const [dogDetail, setDogDetail] = useState({})
 
+  const defaultImg = '/images/default.jpg'
 
   useEffect(()=> {
     axios(`http://localhost:3001/dogs/id/${id}`).then(({data}) => {
@@ -89,7 +90,7 @@ export const Detail = () => {
   return (
     <Cartita>
         <DivA>
-            <Img src={dogDetail.image}/>
+            <Img src={dogDetail.image || defaultImg}/>
         </DivA>
         <DivB>
             <Title>{dogDetail.name}</Title>
